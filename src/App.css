@@ -36,3 +36,35 @@
     transform: rotate(360deg);
   }
 }
+
+.btn-lime {
+  background: #d6ff3e;
+  color: #181818;
+  font-weight: bold;
+  border: none;
+}
+.btn-lime:hover {
+  background: #c0e800;
+  color: #181818;
+}
+.text-lime {
+  color: #d6ff3e !important;
+}
+
+body {
+  background: #181818 !important;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: 0 !important;
+}
+
+.app-content {
+  min-height: calc(100vh - 120px); /* ajusta 120px para a soma da altura do header+footer */
+}
+
+.homepage-bg, .propostas-bg {
+  min-height: 100vh;
+  background: #181818;
+}

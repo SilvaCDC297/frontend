@@ -5,9 +5,25 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background: #181818 !important;
+  min-height: 100vh;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+footer {
+  margin-top: 0 !important;
+}
+
+.app-content {
+  min-height: calc(100vh - 120px); /* ajusta 120px para a soma da altura do header+footer */
+}
+
+.homepage-bg, .propostas-bg {
+  min-height: 100vh;
+  background: #181818;
 }

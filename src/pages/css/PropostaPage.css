@@ -1,0 +1,34 @@
+.propostas-bg {
+  min-height: 100vh;
+  background: #181818;
+}
+.proposta-card {
+  background: #222;
+  color: #fff;
+  border-radius: 16px;
+  border: 2px solid #d6ff3e !important;
+  box-shadow: 0 2px 16px #0004;
+  transition: transform 0.15s;
+}
+.proposta-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 4px 24px #d6ff3e44;
+}
+.text-lime {
+  color: #d6ff3e !important;
+}
+.border-lime {
+  border-color: #d6ff3e !important;
+}
+
+.animated-bg {
+  background: linear-gradient(-45deg, #23272f, #181818, #8a9e40, #23272f);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
