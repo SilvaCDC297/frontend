@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Empresa } from '../types/index';
 
-const API_URL = 'http://localhost:5000/api/empresas';
+const API_URL = 'https://backend-ssli.onrender.com/api/empresas';
 
 export const getEmpresas = async (): Promise<Empresa[]> => {
   const res = await axios.get(API_URL);

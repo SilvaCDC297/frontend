@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Proposta } from '../types/index';
 
-const API_URL = 'http://localhost:5000/api/propostas';
+const API_URL = 'https://backend-ssli.onrender.com/api/propostas';
 
 export const getPropostas = async (): Promise<Proposta[]> => {
   const res = await axios.get(API_URL);

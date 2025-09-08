@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Utilizador } from '../types/index';
 
-const API_URL = 'http://localhost:5000/api/utilizadores';
+const API_URL = 'https://backend-ssli.onrender.com/api/utilizadores';
 
 export const getUsers = async (): Promise<Utilizador[]> => {
   const res = await axios.get(API_URL);
