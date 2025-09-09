@@ -23,7 +23,7 @@ export default function UsersPage() {
   // Quando editar, se for estudante, vai buscar os dados de estudante
   useEffect(() => {
     if (editing && editing.perfil === 'estudante') {
-      axios.get(`http://localhost:5000/api/estudantes/utilizador/${editing.id}`)
+      axios.get(`${process.env.REACT_APP_API_URL}/estudantes/utilizador/${editing.id}`)
         .then(res => {
           setEstudanteForm(res.data);
           setShowEstudante(true);

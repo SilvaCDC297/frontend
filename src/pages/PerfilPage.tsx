@@ -15,7 +15,7 @@ export default function PerfilPage() {
 
   useEffect(() => {
     if (user.perfil === 'estudante') {
-      axios.get(`http://localhost:5000/api/estudantes/utilizador/${user.id}`)
+      axios.get(`${process.env.REACT_APP_API_URL}/estudantes/utilizador/${user.id}`)
         .then(res => {
           setEstudante(res.data);
           setEstudanteForm(res.data);
@@ -30,7 +30,7 @@ export default function PerfilPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/utilizadores/${user.id}`, {
+      await axios.put(`${process.env.REACT_APP_API_URL}/utilizadores/${user.id}`, {
         nome,
         email,
         data_nascimento: dataNascimento,
@@ -58,7 +58,7 @@ export default function PerfilPage() {
   const handleEstudanteSave = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/estudantes/utilizador/${user.id}`, estudanteForm);
+      await axios.put(`${process.env.REACT_APP_API_URL}/estudantes/utilizador/${user.id}`, estudanteForm);
       setEstudante(estudanteForm);
       setEditEstudante(false);
       setMensagem('Dados de estudante atualizados com sucesso!');
@@ -70,7 +70,7 @@ export default function PerfilPage() {
 
   const handleSolicitarRemocao = async () => {
     try {
-      await axios.post('http://localhost:5000/api/acoes-administrativas', {
+      await axios.post(`${process.env.REACT_APP_API_URL}/acoes-administrativas`, {
         tipo_acao: 'remover conta',
         tabela_alvo: 'utilizadores',
         alvo_id: user.id,

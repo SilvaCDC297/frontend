@@ -24,7 +24,7 @@ export default function RegisterPage() {
 
       // Se for estudante, cria também na tabela estudantes
       if (perfil === 'estudante' && novoUser?.id) {
-        await axios.post('http://localhost:5000/api/estudantes', {
+        await axios.post(`${process.env.REACT_APP_API_URL}/estudantes`, {
           utilizador_id: novoUser.id
         });
       }

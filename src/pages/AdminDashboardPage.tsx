@@ -24,13 +24,13 @@ export default function AdminDashboardPage() {
     getEmpresas().then(empresas => setNumEmpresas(empresas.length));
     getPropostas().then(propostas => setNumPropostas(propostas.length));
     // Buscar pedidos de remoção
-    axios.get('http://localhost:5000/api/acoes-administrativas?tipo_acao=remover conta')
+    axios.get(`${process.env.REACT_APP_API_URL}/acoes-administrativas?tipo_acao=remover conta`)
       .then(res => setRemocoes(res.data))
       .catch(() => setRemocoes([]));
-    axios.get('http://localhost:5000/api/acoes-administrativas?tipo_acao=validação')
+    axios.get(`${process.env.REACT_APP_API_URL}/api/acoes-administrativas?tipo_acao=validação`)
       .then(res => setValidacoes(res.data))
       .catch(() => setValidacoes([]));
-    axios.get('http://localhost:5000/api/propostas')
+    axios.get(`${process.env.REACT_APP_API_URL}/propostas`)
       .then(res => setPropostas(res.data))
       .catch(() => setPropostas([]));
   }, []);
@@ -40,12 +40,12 @@ export default function AdminDashboardPage() {
     if (!window.confirm('Tem a certeza que deseja remover este utilizador?')) return;
     try {
       // Atualiza a ação administrativa
-      await axios.put(`http://localhost:5000/api/acoes-administrativas/${acao.id}`, {
+      await axios.put(`${process.env.REACT_APP_API_URL}/acoes-administrativas/${acao.id}`, {
         detalhes: 'Removido com Sucesso',
         admin_id: user.id
       });
       // Remove o utilizador alvo
-      await axios.delete(`http://localhost:5000/api/utilizadores/${acao.alvo_id}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/utilizadores/${acao.alvo_id}`);
       // Atualiza o registo no estado remocoes (não remove, só atualiza)
       setRemocoes(remocoes.map(r =>
         r.id === acao.id
@@ -61,20 +61,20 @@ export default function AdminDashboardPage() {
   // Handler para aceitar ou negar validação
   const handleValidacao = async (id: number, detalhes: string, alvo_id?: number) => {
     try {
-      await axios.put(`http://localhost:5000/api/acoes-administrativas/${id}`, { detalhes });
+      await axios.put(`${process.env.REACT_APP_API_URL}/acoes-administrativas/${id}`, { detalhes });
       setValidacoes(validacoes.map(v =>
         v.id === id ? { ...v, detalhes } : v
       ));
       // Se for Aceite, atualiza o estado da proposta para "aprovada"
       if (detalhes === 'Aceite' && alvo_id) {
-        await axios.put(`http://localhost:5000/api/propostas/${alvo_id}`, { estado: 'aprovada' });
+        await axios.put(`${process.env.REACT_APP_API_URL}/propostas/${alvo_id}`, { estado: 'aprovada' });
         setPropostas(propostas.map(p =>
           p.id === alvo_id ? { ...p, estado: 'aprovada' } : p
         ));
       }
       // Se for Negado, atualiza o estado da proposta para "cancelada"
       if (detalhes === 'Negado' && alvo_id) {
-        await axios.put(`http://localhost:5000/api/propostas/${alvo_id}`, { estado: 'cancelada' });
+        await axios.put(`${process.env.REACT_APP_API_URL}/propostas/${alvo_id}`, { estado: 'cancelada' });
         setPropostas(propostas.map(p =>
           p.id === alvo_id ? { ...p, estado: 'cancelada' } : p
         ));
@@ -169,7 +169,7 @@ export default function AdminDashboardPage() {
                                 title="Eliminar registo"
                                 onClick={async () => {
                                   if (window.confirm('Eliminar este registo da tabela de ações administrativas?')) {
-                                    await axios.delete(`http://localhost:5000/api/acoes-administrativas/${r.id}`);
+                                    await axios.delete(`${process.env.REACT_APP_API_URL}/acoes-administrativas/${r.id}`);
                                     setRemocoes(remocoes.filter(x => x.id !== r.id));
                                   }
                                 }}

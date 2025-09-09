@@ -16,7 +16,7 @@ export default function PropostasPage() {
 
     useEffect(() => {
         getPropostas().then(setPropostas);
-        axios.get('http://localhost:5000/api/empresas').then(res => setEmpresas(res.data));
+        axios.get(`${process.env.REACT_APP_API_URL}/empresas`).then(res => setEmpresas(res.data));
     }, []);
 
     const getEmpresa = (empresa_id: number) =>
