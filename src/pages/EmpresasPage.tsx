@@ -41,7 +41,6 @@ export default function EmpresasPage() {
     e.preventDefault();
     const payload = {
       ...form,
-      utilizador_id: user.id 
     };
     if (editing && editing.id) {
       const updated = await updateEmpresa(editing.id, payload);
